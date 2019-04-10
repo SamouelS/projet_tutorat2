@@ -21,7 +21,8 @@
     <!-- collapsible.js -->
     <script src="http://localhost/projet_tutorat2/public/js/collapsible.js"></script>
 </head>
-<body>    
+<body>
+    
     <!-- Dropdown Structure -->
 <ul id="dropdownDemande" class="dropdown-content">
   <li><a href="#!">Faire une demande</a></li>
@@ -79,6 +80,18 @@
     </ul>    
   </div>  
 </nav>   
-<div class="bg"></div>
+<div class="col s12 m2">
+  <div class="z-depth-5">
+    <div class="content">
+      <ul class="collection with-header">
+        <li class="collection-header"><h4>First Names</h4></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -1,5 +1,14 @@
 body{
-    background-image: url("http://localhost/projet_tutorat2/public/images/pexels-photo-160107.jpeg");
-    background-size: cover;
+    background: url("http://localhost/projet_tutorat2/public/images/pexels-photo-160107.jpeg");
+    background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.z-depth-5{
+    background-color: grey;
+    margin: 10%;
+
+
+    
 }
