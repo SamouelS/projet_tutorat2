@@ -38,8 +38,8 @@ class etudiant
 				$this->prenom = $valeur;
 				break;
 			}
-			case 'mail' : {
-				$this->mail = $valeur;
+			case 'username' : {
+				$this->username = $valeur;
 				break;
 			}
 			case 'mdp' : {
@@ -86,8 +86,8 @@ class etudiant
 				return $this->prenom ;
 				break;
 			}
-			case 'mail' : {
-				return $this->mail;
+			case 'username' : {
+				return $this->username;
 				break;
 			}
 			case 'mdp' : {

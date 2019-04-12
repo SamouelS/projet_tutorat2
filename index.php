@@ -11,25 +11,39 @@ else
   $controller = unserialize(file_get_contents('cache'));
 }
 
-if(isset($_GET['action'])) 
+if(isset($_GET['action']) && isset($_GET['vue'])) 
 {
   switch ($action = $_GET['action']) 
   {
-    case 'data':
+    case 'show':
     {
-      $monCtrl->afficheData();
+
       break;
     }
     case 'add':
     {
-      $monCtrl->add();
-      file_put_contents('cache', serialize($monCtrl));
-      $monCtrl->affichePage();  
+
       break;
-    }     
-  }
+    }   
+    case 'save':
+    {
+
+      break;
+    } 
+    case 'check':
+    {
+      $params['username']= $_POST['username'];
+      $params['password']=$_POST['password'];
+      $controller->check($params); 
+      break;
+    }
+    default :
+    {
+      echo "vue ou action erroné";
+    }  
+  } 
 }
 else{
-  $controller->test();
-  
+  $controller->displayPage('connection');
+
 }
