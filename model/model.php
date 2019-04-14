@@ -37,6 +37,42 @@ class model
 			}		
 		}
     }
+    function getParticipations($id){
+        $vretour=array();
+        $result = $this->db->getParticipations($id);
+        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
+        }
+        return $vretour;
+    }
+    function getEnseignements($id){
+        $vretour=array();
+        $result = $this->db->getEnseignements($id);
+        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
+        }
+        return $vretour;
+    }
+    function getClasseById($id){
+        foreach($this->lesClasses as $uneClasse)
+        {
+            if($uneClasse->id == $id)
+            {
+                return $uneClasse;
+                break;
+            }
+        }
+    }
+    function getMatiereById($id){
+        foreach($this->lesMatieres as $uneMatiere)
+        {
+            if($uneMatiere->id == $id)
+            {
+                return $uneMatiere;
+                break;
+            }
+        }
+    }
     function hydrateMatieres(){
         $result = $this->db->listeMatieres();
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
@@ -53,8 +89,7 @@ class model
         }
         return $lesClasses;
     }
-    function hydrateEtudiants()
-    {
+    function hydrateEtudiants(){
         $result = $this->db->listeEtudiants();
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
             $unEtudiant = new etudiant($row->id,$row->nom,$row->prenom,$row->username,$row->mdp,$row->discord,$row->bts,$row->admin,$this->getClasseById($row->idClasse),$this->getParticipations($row->id),$this->getEnseignements($row->id));
@@ -63,44 +98,8 @@ class model
         return $lesEtudiants;
         
     }
-    function getParticipations($id)
-    {
-        $vretour=array();
-        $result = $this->db->getParticipations($id);
-        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
-        }
-        return $vretour;
-    }
-    function getEnseignements($id)
-    {
-        $vretour=array();
-        $result = $this->db->getEnseignements($id);
-        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
-        }
-        return $vretour;
-    }
-    function getClasseById($id)
-    {
-        foreach($this->lesClasses as $uneClasse)
-        {
-            if($uneClasse->id == $id)
-            {
-                return $uneClasse;
-                break;
-            }
-        }
-    }
-    function getMatiereById($id)
-    {
-        foreach($this->lesMatieres as $uneMatiere)
-        {
-            if($uneMatiere->id == $id)
-            {
-                return $uneMatiere;
-                break;
-            }
-        }
+    function save($vue,$params){
+         
+        //$unEtudiant = new etudiant($nom,$prenom,$username,$mdp,$discor,$uneClasse);
     }
 }

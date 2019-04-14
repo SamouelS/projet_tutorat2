@@ -29,6 +29,8 @@
             <input id="password" name="password"type="password" class="validate" required>
             <label for="password">Password</label>
           </div>
+          
+          <a href="<?= $this->path ?>/index.php?action=add&vue=compte">Créer un compte ?</a>
         </div>
         <div class="card-action">
           <button class="btn waves-effect waves-light" type="submit">Log on   

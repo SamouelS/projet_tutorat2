@@ -27,10 +27,35 @@ class Controller
                 require(dirname(__FILE__).'/../views/page.php');
                 break;
             }
+            case 'compte':{
+                $combobox ='<div class="input-field col s12"><select required><option value="" disabled selected>Choose your option</option>';      
+                foreach ($this->model->lesClasses as $uneClasse) 
+                {
+                    $combobox = $combobox.'<option value="'.$uneClasse->id.'">'.$uneClasse->niveau.$uneClasse->numClasse.'</option>';
+                }
+                $combobox = $combobox.'</select><label>Classes : </label></div>';
+
+                require(dirname(__FILE__).'/../views/compte.php');
+                break;
+            }
             default: {
                 echo "page introuvable";
                 break;  
             }                
+        }
+    }
+    function save($vue,$params)
+    {
+        switch ($vue) {
+            case 'etudiant':{
+                //$model->save($vue,$params);
+                break;
+            }
+            
+            default:{
+                echo 'vue incorrect';
+                break;
+            }
         }
     }
     function check($params)

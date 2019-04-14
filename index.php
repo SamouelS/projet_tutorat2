@@ -22,12 +22,36 @@ if(isset($_GET['action']) && isset($_GET['vue']))
     }
     case 'add':
     {
-
+      switch ($vue = $_GET['vue']) {
+        case 'compte':
+          $controller->displayPage('compte');
+          break;
+        
+        default:
+          echo 'error vue';
+          break;
+      }
       break;
     }   
     case 'save':
     {
-
+      switch ($vue = $_GET['vue']) {
+        case 'etudiant':{
+          $params['nom']=$_POST['nom'];
+          $params['prenom']=$_POST['prenom'];
+          $params['username']=$_POST['username'];
+          $params['mdp']=$_POST['mdp'];
+          if(isset($_POST['discord'])){
+            $params['discord']=$_POST['discord'];
+          }
+          $controller->save($vue,$params);
+          break;
+        }
+        default:{
+          echo 'error vue';
+            break;
+        }
+      }
       break;
     } 
     case 'check':
