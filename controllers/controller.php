@@ -23,12 +23,27 @@ class Controller
                 require(dirname(__FILE__).'/../views/connection.php');
                 break;
             }
+            case 'formDemande':{
+                $nom = $this->userCo->nom;
+                $prenom = $this->userCo->prenom;
+
+                $combobox ='<div class="input-field s12"><select name="idMatiere" required><option value="" disabled selected>Choose your option</option>';      
+                foreach ($this->model->lesMatieres as $uneMatiere) 
+                {
+                    $combobox = $combobox.'<option value="'.$uneMatiere->id.'">'.$uneMatiere->libelle.'</option>';
+                }
+                $combobox = $combobox.'</select><label>Matières : </label></div>';
+                require(dirname(__FILE__).'/../views/formDemande.php');
+                break;
+            }
             case 'accueil':{
-                require(dirname(__FILE__).'/../views/page.php');
+                $nom = $this->userCo->nom;
+                $prenom = $this->userCo->prenom;
+                require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }
             case 'compte':{
-                $combobox ='<div class="input-field col s12"><select required><option value="" disabled selected>Choose your option</option>';      
+                $combobox ='<div class="input-field col s12"><select name="idClasse" required><option value="" disabled selected>Choose your option</option>';      
                 foreach ($this->model->lesClasses as $uneClasse) 
                 {
                     $combobox = $combobox.'<option value="'.$uneClasse->id.'">'.$uneClasse->niveau.$uneClasse->numClasse.'</option>';
@@ -48,10 +63,20 @@ class Controller
     {
         switch ($vue) {
             case 'etudiant':{
-                //$model->save($vue,$params);
+                $this->model->save($vue,$params);
+                file_put_contents('cache', serialize($this));
+                $this->displayPage('connection');
+                //$this->test();
                 break;
             }
-            
+            case 'demande':{
+                $params['idEtudiant'] = $this->userCo->id;
+                $this->model->save($vue,$params);
+                file_put_contents('cache', serialize($this));
+                $this->displayPage('accueil');
+                //$this->test();
+                break;
+            }
             default:{
                 echo 'vue incorrect';
                 break;
@@ -69,6 +94,7 @@ class Controller
                 file_put_contents('cache', serialize($this));
                 $trouver=true;
                 $this->displayPage('accueil');
+                //$this->test();
                 $this->popup('Vous etes connecté !');
 
                 
@@ -85,6 +111,6 @@ class Controller
         echo '<script language="javascript">alert("'.$message.'")</script>';
     }
     function test(){
-        var_dump($this->model->lesEtudiants);
+        var_dump($this->model->lesDemandes);
     }
 }

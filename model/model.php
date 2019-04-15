@@ -8,6 +8,7 @@ use model\metier\etudiant;
 use model\metier\classe; 
 use model\metier\matiere;
 use model\metier\cours;  
+use model\metier\demande;  
 use \pdo;
 class model 
 {
@@ -23,6 +24,7 @@ class model
         $this->lesClasses = $this->hydrateClasses();
         $this->lesMatieres = $this->hydrateMatieres();
         $this->lesEtudiants = $this->hydrateEtudiants();
+        $this->lesDemandes = $this->hydrateDemandes();
     }
     
 	public function __get($propriete) {
@@ -34,7 +36,11 @@ class model
 			case 'lesClasses' : {
 				return $this->lesClasses;
 				break;
-			}		
+            }	
+            case 'lesMatieres' : {
+				return $this->lesMatieres;
+				break;
+			}	
 		}
     }
     function getParticipations($id){
@@ -73,12 +79,23 @@ class model
             }
         }
     }
+    function getEtudiantById($id){
+        foreach($this->lesEtudiants as $unEtudiant)
+        {
+            if($unEtudiant->id == $id)
+            {
+                return $unEtudiant;
+                break;
+            }
+        }
+    }
     function hydrateMatieres(){
         $result = $this->db->listeMatieres();
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
             $uneMatiere = new matiere($row->id,$row->libelle);
-            $this->lesMatieres[]=$uneMatiere;
+            $lesMatieres[]=$uneMatiere;
         }
+        return $lesMatieres;
         
     }
     function hydrateClasses(){
@@ -98,8 +115,38 @@ class model
         return $lesEtudiants;
         
     }
+    function hydrateDemandes(){
+        $result = $this->db->listeDemandes();
+        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+            $uneDemande = new demande($row->id,$this->getMatiereById($row->idMatiere),$this->getEtudiantById($row->idEtudiant),$row->theme,$row->description);
+            $lesDemandes[]=$uneDemande;
+        }
+        return $lesDemandes;
+        
+    }
     function save($vue,$params){
-         
-        //$unEtudiant = new etudiant($nom,$prenom,$username,$mdp,$discor,$uneClasse);
+        switch ($vue) {
+            case 'etudiant':{
+                $mdp = hash('sha256', $params['mdp']);
+                $params['mdp']=$mdp;
+                $id = $this->db->insertEtudiant($params);
+                $uneClasse = $this->getClasseById($params['idClasse']);
+                $unEtudiant = new etudiant($id,$params['nom'],$params['prenom'],$params['username'],$mdp,$params['discord'],null,0,$uneClasse,array(),array());             
+                $this->lesEtudiants[]=$unEtudiant;
+                break;
+            }
+            case 'demande':{
+                $id = $this->db->insertDemande($params);
+                $matiere = $this->getMatiereById($params['idMatiere']);
+                $etudiant = $this->getEtudiantById($params['idEtudiant']);
+                $uneDemande = new demande($id,$matiere,$etudiant,$params['theme'],$params['description']);             
+                $this->lesDemandes[]=$uneDemande;
+                break;
+            }
+            default:{
+                
+                break;
+            }
+        }
     }
 }

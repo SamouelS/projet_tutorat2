@@ -25,7 +25,7 @@
     
     <!-- Dropdown Structure -->
 <ul id="dropdownDemande" class="dropdown-content">
-  <li><a href="#!">Faire une demande</a></li>
+  <li><a href="<?= $this->path ?>?action=add&vue=demande">Faire une demande</a></li>
   <li class="divider"></li>
   <li><a href="#!">Afficher les demandes</a></li>
 </ul>
@@ -45,12 +45,18 @@
   <li><a href="#!">three</a></li>
 </ul>
 
+<!-- Dropdown Structure -->
+<ul id="dropdownMenu" class="dropdown-content">
+  <li><a href="<?= $this->path ?>?action=display&vue=connection">Déconnexion</a></li>
+
+</ul>
+
 <!-- navbar content here  --> 
 <ul id="slide-out" class="sidenav">
   <ul class="collapsible">
     <li>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Demande</div>
-      <div class="collapsible-body valign center"><a href="#!">Faire une demande</a></div>
+      <div class="collapsible-body valign center"><a href="<?= $this->path ?>?action=add&vue=demande">Faire une demande</a></div>
       <div class="collapsible-body valign center"><a href="#!">Afficher les demandes</a></div>
     </li>
     <li>
@@ -70,13 +76,14 @@
   
 <nav>
   <div class="nav-wrapper grey darken-2">
-    <a href="#!" class="brand-logo"><img class="materialboxed" width="60" src="http://localhost/projet_tutorat2/public/images/logo.png"></a>
+    <a href="<?= $this->path ?>?action=display&vue=accueil" class="brand-logo"><img class="responsive-img" src="<?= $this->path ?>/public/images/logo.png" width="60"></a>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
     <!-- Dropdown Trigger -->
       <li><a class="dropdown-button" data-target="dropdownDemande"><span class="purple-text text-lighten-3">Demande</span><i class="material-icons purple-text text-lighten-3 right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button" data-target="dropdownCours"><span class="yellow-text text-darken-2">Cours</span> <i class="material-icons yellow-text text-darken-2 right">arrow_drop_down</i></a></li>     
       <li><a class="dropdown-button" data-target="dropdownAnalayse"><span class="blue-text text text-lighten-1">Analyse</span> <i class="material-icons blue-text text-lighten-1 right ">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" data-target="dropdownMenu"><i class="material-icons left">person</i><?=$prenom.' '.$nom?></a></li>
     </ul>    
   </div>  
 </nav>   

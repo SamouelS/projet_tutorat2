@@ -57,27 +57,21 @@ class DAL
         }
         
     }
-    private function execInsertRequete($uneRequete)
-    {		
-		$connect=$this->connexion();
-        $resultat['status']=$connect->query($uneRequete);
-        if($resultat['status']==false)
-        {
-            $resultat['message'] = "Error: " . $uneRequete . '<br>' . $connect->error;
-        }
-        return $resultat;
-	}
-    public function ajoutEtudiant($param)
-    {      
-        $requete = 'INSERT INTO etudiant(nom,prenom,username,mdp,discord,classe) VALUES (\''.$param['nom'].'\',\''.$param['prenom'].'\',\''.$param['username'].'\',\''.hash('sha256', $param['mdp']).'\',\''.$param['discord'].'\','.$param['classe'].')';      
-        $resultat = $this->execInsertRequete($requete);
-        return $resultat;
+
+    public function insertEtudiant($params){      
+        $requete = 'CALL insertEtudiant("'.$params['nom'].'","'.$params['prenom'].'","'.$params['username'].'","'.$params['mdp'].'","'.$params['discord'].'",'.$params['idClasse'].')';      
+        $this->execRequete($requete);
+
+        $result = $this->execRequete('SELECT id FROM etudiant ORDER BY id DESC LIMIT 1');
+        return $result->fetch()[0];
     }
-    public function ajoutDemande($param)
+    public function insertDemande($param)
     {
-        $requete = 'INSERT INTO demander(id_matiere,id_etudiant,theme,description) VALUES ('.$param['id_matiere'].','.$param['id_etudiant'].',\''.$param['theme'].'\',\''.$param['description'].'\')';      
-        $resultat = $this->execInsertRequete($requete);
-        return $resultat;
+        $requete = 'INSERT INTO demander(idMatiere,idEtudiant,theme,description) VALUES ('.$param['idMatiere'].','.$param['idEtudiant'].',\''.$param['theme'].'\',\''.$param['description'].'\')';      
+        $resultat = $this->execRequete($requete);
+
+        $result = $this->execRequete('SELECT id FROM demander ORDER BY id DESC LIMIT 1');
+        return $result->fetch()[0];
     }
     public function ajoutCours($param)
     {

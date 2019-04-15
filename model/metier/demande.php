@@ -3,16 +3,16 @@ namespace model\metier;
 class demande
 {
     private $id;
-    private $id_etudiant;
-    private $id_matiere;
+    private $etudiant;
+    private $matiere;
     private $theme;
     private $description;
 
     
-    function __construct($id,$id_matiere,$id_etudiant,$theme,$description){
+    function __construct($id,$matiere,$etudiant,$theme,$description){
         $this->id=$id;
-        $this->id_matiere=$id_matiere;
-        $this->id_etudiant=$id_etudiant;      
+        $this->matiere=$matiere;
+        $this->etudiant=$etudiant;      
         $this->theme = $theme;
         $this->description=$description;
     }

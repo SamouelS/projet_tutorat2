@@ -1,9 +1,4 @@
-.login{
-    width: 50%;
-    height: 100px;
-    background-color: blueviolet;
-    margin: auto;
-}
+
 body{
     margin:0;
     background-image: url("http://localhost/projet_tutorat2/public/images/website-login-background.jpg");
