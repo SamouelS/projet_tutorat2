@@ -33,7 +33,7 @@
 
 <!-- Dropdown Structure -->
 <ul id="dropdownCours" class="dropdown-content">
-  <li><a href="#!">Créer un cours</a></li>
+  <li><a href="<?= $this->path ?>?action=add&vue=cours">Créer un cours</a></li>
   <li class="divider"></li>
   <li><a href="#!">Afficher les cours</a></li>
 </ul>

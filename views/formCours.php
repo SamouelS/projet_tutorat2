@@ -8,7 +8,7 @@ $content ='
                 <div class="card-content white-text">
 
                     <span class="card-title">
-                        <h5>Demande d\'un cours</h5>
+                        <h5>Création d\'un cours</h5>
                     </span>
 
                     <div class="row" style="margin-top:25px;">
@@ -16,17 +16,21 @@ $content ='
                         '.$comboboxMatieres.'
 
                         <div class="input-field s12">
-                            <input id="theme" name="theme" type="text">
+                            <input id="theme" name="theme" type="text" value="'.$theme.'">
                             <label for="theme">Thème</label>
                         </div>
                         <div class="input-field s12">
                             <input id="description" name="description" type="text">
                             <label for="description">Description</label>
                         </div>
+                        <div class="input-field s12">
+                            <input id="salle" name="salle" type="text">
+                            <label for="salle">Salle</label>
+                        </div>
                     </div>
                 </div>
                 <div class="card-action">
-                    <button class="btn waves-effect waves-light" type="submit">Enregistrer la demande
+                    <button class="btn waves-effect waves-light" type="submit">Créer le cours
                         <i class="material-icons right">send</i>
                     </button>
                 </div>

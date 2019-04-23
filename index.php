@@ -41,7 +41,17 @@ if(isset($_GET['action']) && isset($_GET['vue']))
         case 'demande':{
           $controller->displayPage('formDemande');
           break;
-        }     
+        }  
+        case 'cours':{
+          if(isset($_POST['idDemande'])){
+            $params['idDemande']=$_POST['idDemande'];
+          }
+          else{
+            $params = '';
+          }
+          $controller->displayPage('formCours',$params);
+          break;
+        }      
         default:{
           echo 'error vue';
           break;

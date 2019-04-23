@@ -55,20 +55,19 @@ class demande
     }
     public function __get($propriete) {
     	switch ($propriete) {
-    		case 'id' :
-    		{
+    		case 'id' :{
     			return $this->id;
     			break;
-            }
-            case 'etudiant' : {
+         }
+			case 'etudiant' : {
 				return $this->etudiant;
 				break;
 			}
 			case 'matiere' : {
 				return $this->matiere;
 				break;
-            } 
-            case 'theme' : {
+      	} 
+         case 'theme' : {
 				return $this->theme;
 				break;
 			}

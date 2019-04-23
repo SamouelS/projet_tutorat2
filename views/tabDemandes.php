@@ -20,7 +20,7 @@ foreach ($this->model->lesDemandes as $uneDemande) {
                 <td class="description">'.$uneDemande->description.'</td>
                 <td>
                     <form action="'.$this->path.'/index.php?action=add&vue=cours" method="post">
-                        <input type="hidden" name="idDemande" value"'.$uneDemande->id.'">
+                        <input type="hidden" name="idDemande" value="'.$uneDemande->id.'">
                         <input type="submit" value="repondre a la demande">
                     </form>
                 </td>

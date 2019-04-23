@@ -64,6 +64,16 @@ class model
         }
         return $vretour;
     }
+    function getDemandeById($id){
+        foreach($this->lesDemandes as $uneDemande)
+        {
+            if($uneDemande->id == $id)
+            {
+                return $uneDemande;
+                break;
+            }
+        }
+    }
     function getClasseById($id){
         foreach($this->lesClasses as $uneClasse)
         {

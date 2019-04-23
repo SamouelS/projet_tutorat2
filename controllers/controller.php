@@ -16,7 +16,7 @@ class Controller
         $this->model = new model();
         $this->path = "http://localhost/projet_tutorat2";
     }
-    function displayPage($page)
+    function displayPage($page,$params=null)
     {
         switch ($page) {
             case 'connection':{
@@ -27,13 +27,24 @@ class Controller
                 $nom = $this->userCo->nom;
                 $prenom = $this->userCo->prenom;
 
-                $combobox ='<div class="input-field s12"><select name="idMatiere" required><option value="" disabled selected>Choose your option</option>';      
-                foreach ($this->model->lesMatieres as $uneMatiere) 
-                {
-                    $combobox = $combobox.'<option value="'.$uneMatiere->id.'">'.$uneMatiere->libelle.'</option>';
-                }
-                $combobox = $combobox.'</select><label>Matières : </label></div>';
+                require_once(dirname(__FILE__).'/../views/comboboxMatieres.php');
                 require_once(dirname(__FILE__).'/../views/formDemande.php');
+                require(dirname(__FILE__).'/../views/accueil.php');
+                break;
+            }
+            case 'formCours':{
+                $nom = $this->userCo->nom;
+                $prenom = $this->userCo->prenom;
+                $theme ='';
+                $description ='';
+                $salle ='';
+                if(isset($params['idDemande'])){
+                    $demande = $this->model->getDemandeById($params['idDemande']);
+                    $theme = $demande->theme;
+                }
+                  
+                require_once(dirname(__FILE__).'/../views/comboboxMatieres.php');
+                require_once(dirname(__FILE__).'/../views/formCours.php');
                 require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }
@@ -42,7 +53,7 @@ class Controller
                 $prenom = $this->userCo->prenom;
 
                 
-                require_once(dirname(__FILE__).'/../views/listDemandes.php');
+                require_once(dirname(__FILE__).'/../views/tabDemandes.php');
                 require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }
