@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Accueil</title>
     <!-- style.css -->
     <link rel="stylesheet" href="http://localhost/projet_tutorat2/public/css/style.css">
     <!-- icons.css -->
@@ -20,6 +20,7 @@
     <script src="http://localhost/projet_tutorat2/public/js/sidenav.js"></script>
     <!-- collapsible.js -->
     <script src="http://localhost/projet_tutorat2/public/js/collapsible.js"></script>
+    <script src="http://localhost/projet_tutorat2/public/js/formSelect.js"></script>
 </head>
 <body>
     
@@ -27,7 +28,7 @@
 <ul id="dropdownDemande" class="dropdown-content">
   <li><a href="<?= $this->path ?>?action=add&vue=demande">Faire une demande</a></li>
   <li class="divider"></li>
-  <li><a href="#!">Afficher les demandes</a></li>
+  <li><a href="<?= $this->path ?>?action=display&vue=demande">Afficher les demandes</a></li>
 </ul>
 
 <!-- Dropdown Structure -->
@@ -87,18 +88,6 @@
     </ul>    
   </div>  
 </nav>   
-<div class="col s12 m2">
-  <div class="z-depth-5">
-    <div class="content">
-      <ul class="collection with-header">
-        <li class="collection-header"><h4>First Names</h4></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<?=$content?>
 </body>
 </html>

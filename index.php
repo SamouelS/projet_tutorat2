@@ -18,12 +18,15 @@ if(isset($_GET['action']) && isset($_GET['vue']))
     case 'display':{
       switch ($vue = $_GET['vue']) {
         case 'accueil':{
-          $controller->displayPage('accueil');
-  
+          $controller->displayPage('accueil'); 
           break;
         }
         case 'connection':{
           $controller->displayPage('connection');
+          break;
+        }
+        case 'demande':{
+          $controller->displayPage('demande');
           break;
         }
       }

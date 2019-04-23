@@ -33,12 +33,23 @@ class Controller
                     $combobox = $combobox.'<option value="'.$uneMatiere->id.'">'.$uneMatiere->libelle.'</option>';
                 }
                 $combobox = $combobox.'</select><label>Matières : </label></div>';
-                require(dirname(__FILE__).'/../views/formDemande.php');
+                require_once(dirname(__FILE__).'/../views/formDemande.php');
+                require(dirname(__FILE__).'/../views/accueil.php');
+                break;
+            }
+            case 'demande':{
+                $nom = $this->userCo->nom;
+                $prenom = $this->userCo->prenom;
+
+                
+                require_once(dirname(__FILE__).'/../views/listDemandes.php');
+                require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }
             case 'accueil':{
                 $nom = $this->userCo->nom;
                 $prenom = $this->userCo->prenom;
+                $content='';
                 require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }

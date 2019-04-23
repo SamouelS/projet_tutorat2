@@ -60,12 +60,12 @@ class demande
     			return $this->id;
     			break;
             }
-            case 'id_etudiant' : {
-				return $this->id_etudiant;
+            case 'etudiant' : {
+				return $this->etudiant;
 				break;
 			}
-			case 'id_matiere' : {
-				return $this->id_matiere;
+			case 'matiere' : {
+				return $this->matiere;
 				break;
             } 
             case 'theme' : {

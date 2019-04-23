@@ -16,6 +16,7 @@ class model
     private $lesClasses;
     private $lesMatieres;
     private $lesEtudiants;
+    private $lesDemandes;
     private $lesCours;
 
     function __construct() 
@@ -40,7 +41,11 @@ class model
             case 'lesMatieres' : {
 				return $this->lesMatieres;
 				break;
-			}	
+            }
+            case 'lesDemandes' : {
+				return $this->lesDemandes;
+				break;
+			}		
 		}
     }
     function getParticipations($id){
