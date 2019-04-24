@@ -21,6 +21,7 @@
     <!-- collapsible.js -->
     <script src="http://localhost/projet_tutorat2/public/js/collapsible.js"></script>
     <script src="http://localhost/projet_tutorat2/public/js/formSelect.js"></script>
+    <script src="http://localhost/projet_tutorat2/public/js/datePickers.js"></script>
 </head>
 <body>
     

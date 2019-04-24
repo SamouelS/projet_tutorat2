@@ -3,7 +3,7 @@ include_once('autoload.php');
 
 use model\DAL;
 use model\model;
-
+use \date;
 class Controller
 {
     
@@ -38,11 +38,12 @@ class Controller
                 $theme ='';
                 $description ='';
                 $salle ='';
+                $date = new DateTime();
                 if(isset($params['idDemande'])){
                     $demande = $this->model->getDemandeById($params['idDemande']);
                     $theme = $demande->theme;
                 }
-                  
+                require_once(dirname(__FILE__).'/../views/checkboxesClasses.php'); 
                 require_once(dirname(__FILE__).'/../views/comboboxMatieres.php');
                 require_once(dirname(__FILE__).'/../views/formCours.php');
                 require(dirname(__FILE__).'/../views/accueil.php');

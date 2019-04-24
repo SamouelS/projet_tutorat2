@@ -22,3 +22,6 @@ body{
 .tableDemande td.description{
     word-break:break-all;
 }
+.datepicker-day-button{
+    color: grey !important;
+}

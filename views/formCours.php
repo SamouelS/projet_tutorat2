@@ -27,6 +27,15 @@ $content ='
                             <input id="salle" name="salle" type="text">
                             <label for="salle">Salle</label>
                         </div>
+
+                        '.$checkboxesClasses.'
+
+                        <div class="input-field s12">
+                            <input id="picker" type="text" class="datepicker">
+                            <label for="picker">Date du cours ?</label>
+                        </div>
+                        <select id="comboboxHoraires" name="time"></select>
+
                     </div>
                 </div>
                 <div class="card-action">

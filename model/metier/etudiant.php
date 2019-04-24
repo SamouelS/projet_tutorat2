@@ -102,8 +102,8 @@ class etudiant
 				return $this->bts;
 				break;
 			}
-			case 'id_classe' : {
-				return $this->id_classe;
+			case 'uneClasse' : {
+				return $this->uneClasse;
 				break;
 			}
 			case 'admin' : {
