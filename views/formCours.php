@@ -15,27 +15,34 @@ $content ='
 
                         '.$comboboxMatieres.'
 
-                        <div class="input-field s12">
+                        <div class="input-field col s12">
                             <input id="theme" name="theme" type="text" value="'.$theme.'">
                             <label for="theme">Thème</label>
                         </div>
-                        <div class="input-field s12">
+                        <div class="input-field col s12">
                             <input id="description" name="description" type="text">
                             <label for="description">Description</label>
                         </div>
-                        <div class="input-field s12">
+                        <div class="input-field col s12">
                             <input id="salle" name="salle" type="text">
                             <label for="salle">Salle</label>
                         </div>
 
                         '.$checkboxesClasses.'
-
-                        <div class="input-field s12">
-                            <input id="picker" type="text" class="datepicker">
-                            <label for="picker">Date du cours ?</label>
+                        <script type="text/javascript">$("input[type=\'checkbox\']").change(function(){myFunction2();});</script>
+                           
+                        <div class="input-field col s12">
+                            <input id="datePicker" type="text" class="datepicker" onchange="myFunction2()">
+                            <label for="datePicker">Date du cours ?</label>
                         </div>
-                        <select id="comboboxHoraires" name="time"></select>
+                        
+                        <div class="input-field col s12">
+                            <select id="comboboxHoraires" name="time">
 
+                            </select>
+                            <label>Quelle heure ?</label>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="card-action">

@@ -3,7 +3,7 @@ include_once('autoload.php');
 
 use model\DAL;
 use model\model;
-use \date;
+//use \date;
 class Controller
 {
     
