@@ -29,6 +29,10 @@ if(isset($_GET['action']) && isset($_GET['vue']))
           $controller->displayPage('demande');
           break;
         }
+        case 'cours':{
+          $controller->displayPage('cours');
+          break;
+        }
       }
     break;
     }
@@ -81,6 +85,17 @@ if(isset($_GET['action']) && isset($_GET['vue']))
           $controller->save($vue,$params);
           break;
         }
+        case 'cours';{
+          $params['idMatiere']=$_POST['idMatiere'];
+          $params['theme']=$_POST['theme'];
+          $params['description']=$_POST['description'];
+          $params['salle']=$_POST['salle'];
+          $params['date']=$_POST['date'];
+          $params['time']=$_POST['time'];
+
+          $controller->save($vue,$params);
+          break;
+        }
         default:{
           echo 'error vue';
           break;
@@ -93,6 +108,11 @@ if(isset($_GET['action']) && isset($_GET['vue']))
       $params['username']= $_POST['username'];
       $params['password']=$_POST['password'];
       $controller->check($params); 
+      break;
+    }
+    case 'test':
+    {
+      $controller->test();
       break;
     }
     default :

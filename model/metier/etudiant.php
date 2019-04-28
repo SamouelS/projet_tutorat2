@@ -11,10 +11,9 @@ class etudiant
 	private $bts;	
 	private $admin;
 	private $uneClasse;
-	private $lesParticipations;
-	private $lesEnseignements;
+
     
-    function __construct($id,$nom,$prenom,$username,$mdp,$discord,$bts,$admin,$uneClasse,$lesParticipations,$lesEnseignements){
+    function __construct($id,$nom,$prenom,$username,$mdp,$discord,$bts,$admin,$uneClasse){
 		$this->id = $id;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
@@ -24,8 +23,6 @@ class etudiant
 		$this->bts = $bts;
 		$this->admin = $admin;
 		$this->uneClasse = $uneClasse;
-		$this->lesParticipations = $lesParticipations;
-		$this->lesEnseignements = $lesEnseignements;
 	}
 	
     public function __set($propriete, $valeur) {

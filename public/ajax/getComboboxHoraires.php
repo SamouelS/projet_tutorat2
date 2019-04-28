@@ -13,9 +13,9 @@ $date = $date->format('m/d/Y');
 
 
 for($h=80;$h<190;$h+=5)
-    {
-		$tab [0][$h.'-'.$hf=$h+5]=0;
-	}
+{
+	$tab [0][$h.'-'.$hf=$h+5]=0;
+}
 foreach($etudiants as $unEtudiant)
 {
 	$pageHTML = file_get_contents("http://edtmobilite.wigorservices.net/WebPsDyn.aspx?Action=posETUD&serverid=h&Tel=".$unEtudiant."&date=".$date."%208:00");

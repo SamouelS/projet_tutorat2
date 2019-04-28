@@ -26,6 +26,7 @@ class model
         $this->lesMatieres = $this->hydrateMatieres();
         $this->lesEtudiants = $this->hydrateEtudiants();
         $this->lesDemandes = $this->hydrateDemandes();
+        $this->lesCours = $this->hydrateCours();
     }
     
 	public function __get($propriete) {
@@ -45,22 +46,27 @@ class model
             case 'lesDemandes' : {
 				return $this->lesDemandes;
 				break;
-			}		
+            }	
+            case 'lesCours' : {
+				return $this->lesCours;
+				break;
+			}	
 		}
     }
-    function getParticipations($id){
-        $vretour=array();
-        $result = $this->db->getParticipations($id);
+
+    function getTuteur($id){
+
+        $result = $this->db->getTuteur($id);
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
+            $vretour= new etudiant($row->id,$row->nom,$row->prenom,$row->username,$row->mdp,$row->discord,$row->bts,$row->admin,$this->getClasseById($row->idClasse));
         }
         return $vretour;
     }
-    function getEnseignements($id){
+    function getParticipants($id){
         $vretour=array();
-        $result = $this->db->getEnseignements($id);
+        $result = $this->db->getParticipants($id);
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-            $vretour[]= new cours($row->id,$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->niveau,$row->statut,$row->dateTime);
+            $vretour[]= new etudiant($row->id,$row->nom,$row->prenom,$row->username,$row->mdp,$row->discord,$row->bts,$row->admin,$this->getClasseById($row->idClasse));
         }
         return $vretour;
     }
@@ -124,7 +130,7 @@ class model
     function hydrateEtudiants(){
         $result = $this->db->listeEtudiants();
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-            $unEtudiant = new etudiant($row->id,$row->nom,$row->prenom,$row->username,$row->mdp,$row->discord,$row->bts,$row->admin,$this->getClasseById($row->idClasse),$this->getParticipations($row->id),$this->getEnseignements($row->id));
+            $unEtudiant = new etudiant($row->id,$row->nom,$row->prenom,$row->username,$row->mdp,$row->discord,$row->bts,$row->admin,$this->getClasseById($row->idClasse));
             $lesEtudiants[]=$unEtudiant;
         }
         return $lesEtudiants;
@@ -139,14 +145,22 @@ class model
         return $lesDemandes;
         
     }
-    function save($vue,$params){
+    function hydrateCours(){
+        $result = $this->db->listeCours();
+        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+            $unCours = new cours($row->id,$this->getTuteur($row->id),$this->getParticipants($row->id),$this->getMatiereById($row->idMatiere),$row->theme,$row->description,$row->salle,$row->date,$row->time,$row->statut);
+            $lesCours[]=$unCours;
+        }
+        return $lesCours;
+    }
+    function insert($vue,$params){
         switch ($vue) {
             case 'etudiant':{
                 $mdp = hash('sha256', $params['mdp']);
                 $params['mdp']=$mdp;
                 $id = $this->db->insertEtudiant($params);
                 $uneClasse = $this->getClasseById($params['idClasse']);
-                $unEtudiant = new etudiant($id,$params['nom'],$params['prenom'],$params['username'],$mdp,$params['discord'],null,0,$uneClasse,array(),array());             
+                $unEtudiant = new etudiant($id,$params['nom'],$params['prenom'],$params['username'],$mdp,$params['discord'],null,0,$uneClasse);             
                 $this->lesEtudiants[]=$unEtudiant;
                 break;
             }
@@ -158,6 +172,21 @@ class model
                 $this->lesDemandes[]=$uneDemande;
                 break;
             }
+            case 'cours':{
+                $idCours = $this->db->insertCours($params);
+                $matiere = $this->getMatiereById($params['idMatiere']);
+                $tuteur = $params['tuteur'];
+                $unCours = new Cours($idCours,$tuteur,array(),$matiere,$params['theme'],$params['description'],$params['salle'],$params['date'],$params['time'],$params['statut']);             
+                $this->lesCours[]=$unCours;
+
+                $this->db->insertMener($tuteur->id,$idCours);
+
+
+                
+                break;
+            }
+
+
             default:{
                 
                 break;

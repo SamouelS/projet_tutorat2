@@ -1,6 +1,6 @@
 <?php
 $content ='
-<form action="'.$this->path.'/index.php?action=save&vue=demande" method="post">
+<form action="'.$this->path.'/index.php?action=save&vue=cours" method="post">
     <div class="row">
         <div class="col s3 "></div>
         <div class="col s6 ">
@@ -16,7 +16,7 @@ $content ='
                         '.$comboboxMatieres.'
 
                         <div class="input-field col s12">
-                            <input id="theme" name="theme" type="text" value="'.$theme.'">
+                            <input id="theme" name="theme" type="text" value="'.$theme.'" required>
                             <label for="theme">Thème</label>
                         </div>
                         <div class="input-field col s12">
@@ -24,7 +24,7 @@ $content ='
                             <label for="description">Description</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="salle" name="salle" type="text">
+                            <input id="salle" name="salle" type="text" required>
                             <label for="salle">Salle</label>
                         </div>
 
@@ -32,12 +32,12 @@ $content ='
                         <script type="text/javascript">$("input[type=\'checkbox\']").change(function(){myFunction2();});</script>
                            
                         <div class="input-field col s12">
-                            <input id="datePicker" type="text" class="datepicker" onchange="myFunction2()">
+                            <input id="datePicker" name="date" type="text" class="datepicker" onchange="myFunction2()" required>
                             <label for="datePicker">Date du cours ?</label>
                         </div>
                         
                         <div class="input-field col s12">
-                            <select id="comboboxHoraires" name="time">
+                            <select id="comboboxHoraires" name="time" required>
 
                             </select>
                             <label>Quelle heure ?</label>

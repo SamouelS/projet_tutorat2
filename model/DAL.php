@@ -73,21 +73,22 @@ class DAL
         $result = $this->execRequete('SELECT id FROM demander ORDER BY id DESC LIMIT 1');
         return $result->fetch()[0];
     }
-    public function ajoutCours($param)
+    public function insertCours($params)
     {
-        $requete = 'INSERT INTO cours(id_matiere,theme,description,salle,niveau,statut,dateTime) VALUES ('.$param['id_matiere'].',\''.$param['theme'].'\',\''.$param['description'].'\',\''.$param['salle'].'\',\''.$param['niveau'].'\',\'en cours de verif\',\''.$param['dateTime']->format('d/m/Y H:i').'\')';
-        $resultat = $this->execInsertRequete($requete);
-        return $resultat;
+        $requete = 'CALL insertCours('.$params['idMatiere'].',"'.$params['theme'].'","'.$params['description'].'","'.$params['salle'].'","'.$params['date'].'","'.$params['time'].'","'.$params['statut'].'")';      
+        $this->execRequete($requete);
+
+        $result = $this->execRequete('SELECT id FROM cours ORDER BY id DESC LIMIT 1');
+        return $result->fetch()[0];
+    }
+    public function insertMener($idTuteur,$idCours)
+    {
+        $requete = 'INSERT INTO mener(id_cours,id_etudiant) VALUES ('.$idCours.','.$idTuteur.')';
+        $this->execRequete($requete);
     }
     public function ajoutParticiper($id_cours,$id_etudiant)
     {
         $requete = 'INSERT INTO participer(id_cours,id_etudiant) VALUES ('.$id_cours.','.$id_etudiant.')';
-        $resultat = $this->execInsertRequete($requete);
-        return $resultat;
-    }
-    public function ajoutMener($id_cours,$id_tuteur)
-    {
-        $requete = 'INSERT INTO mener(id_cours,id_etudiant) VALUES ('.$id_cours.','.$id_tuteur.')';
         $resultat = $this->execInsertRequete($requete);
         return $resultat;
     }
@@ -133,5 +134,12 @@ class DAL
     {
         return $this->execRequete('CALL getEnseignements('.$id.')');
     }
-
+    public function getTuteur($id)
+    {
+        return $this->execRequete('CALL getTuteur('.$id.')');
+    }
+    public function getParticipants($id)
+    {
+        return $this->execRequete('CALL getParticipants('.$id.')');
+    }
 }

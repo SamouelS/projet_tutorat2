@@ -37,12 +37,12 @@
 <ul id="dropdownCours" class="dropdown-content">
   <li><a href="<?= $this->path ?>?action=add&vue=cours">Créer un cours</a></li>
   <li class="divider"></li>
-  <li><a href="#!">Afficher les cours</a></li>
+  <li><a href="<?= $this->path ?>?action=display&vue=cours">Afficher les cours</a></li>
 </ul>
 
 <!-- Dropdown Structure -->
 <ul id="dropdownAnalayse" class="dropdown-content">
-  <li><a href="#!">one</a></li>
+  <li><a href="<?= $this->path ?>?action=test&vue=test">test</a></li>
   <li><a href="#!">two</a></li>
   <li class="divider"></li>
   <li><a href="#!">three</a></li>

@@ -58,6 +58,15 @@ class Controller
                 require(dirname(__FILE__).'/../views/accueil.php');
                 break;
             }
+            case 'cours':{
+                $nom = $this->userCo->nom;
+                $prenom = $this->userCo->prenom;
+
+                
+                require_once(dirname(__FILE__).'/../views/tabCours.php');
+                require(dirname(__FILE__).'/../views/accueil.php');
+                break;
+            }
             case 'accueil':{
                 $nom = $this->userCo->nom;
                 $prenom = $this->userCo->prenom;
@@ -86,7 +95,7 @@ class Controller
     {
         switch ($vue) {
             case 'etudiant':{
-                $this->model->save($vue,$params);
+                $this->model->insert($vue,$params);
                 file_put_contents('cache', serialize($this));
                 $this->displayPage('connection');
                 //$this->test();
@@ -94,10 +103,19 @@ class Controller
             }
             case 'demande':{
                 $params['idEtudiant'] = $this->userCo->id;
-                $this->model->save($vue,$params);
+                $this->model->insert($vue,$params);
                 file_put_contents('cache', serialize($this));
                 $this->displayPage('accueil');
                 //$this->test();
+                break;
+            }
+            case 'cours':{
+                $params['tuteur'] = $this->userCo;
+                $params['statut']='en vérification';
+                $this->model->insert($vue,$params);
+                file_put_contents('cache', serialize($this));
+
+                $this->displayPage('accueil');
                 break;
             }
             default:{
@@ -134,6 +152,6 @@ class Controller
         echo '<script language="javascript">alert("'.$message.'")</script>';
     }
     function test(){
-        var_dump($this->model->lesDemandes);
+        var_dump($this->model->lesCours);
     }
 }
