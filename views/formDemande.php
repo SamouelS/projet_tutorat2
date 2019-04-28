@@ -15,11 +15,11 @@ $content ='
 
                         '.$comboboxMatieres.'
 
-                        <div class="input-field s12">
+                        <div class="input-field col s12">
                             <input id="theme" name="theme" type="text">
                             <label for="theme">Thème</label>
                         </div>
-                        <div class="input-field s12">
+                        <div class="input-field col s12">
                             <input id="description" name="description" type="text">
                             <label for="description">Description</label>
                         </div>

@@ -37,11 +37,12 @@ class Controller
                 $prenom = $this->userCo->prenom;
                 $theme ='';
                 $description ='';
-                $salle ='';
                 $date = new DateTime();
                 if(isset($params['idDemande'])){
                     $demande = $this->model->getDemandeById($params['idDemande']);
                     $theme = $demande->theme;
+                    $description = $demande->description;
+                    $matiereSelect = $demande->matiere->id;
                 }
                 require_once(dirname(__FILE__).'/../views/checkboxesClasses.php'); 
                 require_once(dirname(__FILE__).'/../views/comboboxMatieres.php');

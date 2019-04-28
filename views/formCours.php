@@ -20,7 +20,7 @@ $content ='
                             <label for="theme">Thème</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="description" name="description" type="text">
+                            <input id="description" name="description" type="text" value="'.$description.'">
                             <label for="description">Description</label>
                         </div>
                         <div class="input-field col s12">

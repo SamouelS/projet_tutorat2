@@ -52,8 +52,8 @@ class cours
                $this->niveau= $valeur;
                break;
          }  
-         case 'dateTime' : {
-               $this->dateTime = $valeur;
+         case 'date' : {
+               $this->date = $valeur;
                break;
          }     
          case 'statut' : {
@@ -105,8 +105,12 @@ class cours
             return $this->statut;
             break;
          }    
-         case 'dateTime' : {
-            return $this->dateTime;
+         case 'date' : {
+            return $this->date;
+            break;
+         } 
+         case 'time' : {
+            return $this->time;
             break;
          } 
          case 'participants' : {
