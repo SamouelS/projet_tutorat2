@@ -18,7 +18,14 @@ for($h=80;$h<190;$h+=5)
 }
 foreach($etudiants as $unEtudiant)
 {
-	$pageHTML = file_get_contents("http://edtmobilite.wigorservices.net/WebPsDyn.aspx?Action=posETUD&serverid=h&Tel=".$unEtudiant."&date=".$date."%208:00");
+	$aContext = array(
+		'http' => array(
+			'proxy' => 'tcp://172.30.137.29:3128',
+			'request_fulluri' => true
+		),
+	);
+	$cxContext = stream_context_create($aContext);
+	$pageHTML = file_get_contents("http://edtmobilite.wigorservices.net/WebPsDyn.aspx?Action=posETUD&serverid=h&Tel=".$unEtudiant."&date=".$date."%208:00",false,$cxContext);
 	preg_match_all('/<div class="Ligne".*?<div class="Debut">(\d{2}:\d{2}).*?<div class="Fin">(\d{2}:\d{2})/', $pageHTML, $matches);
 	for($i=0;$i<count($matches[1]);$i++)
 	{
